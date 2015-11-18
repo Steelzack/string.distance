@@ -1,27 +1,7 @@
-package distances
+package algorithms
 
 type OptAli struct {
 	StringDistance
-}
-
-func (dist OptAli) minimum3(element1 int, element2 int, element3 int) int {
-	min := element1
-	if element2 < element1 {
-		min = element2
-	}
-	if element3 < element1 {
-		min = element3
-	}
-	return min
-}
-
-func (dist OptAli) minimum2(element1 int, element2 int) int {
-	min := element1
-	if element2 < element1 {
-		min = element2
-	}
-
-	return min
 }
 
 func (dist OptAli) CalculateDistance(fromString string, toString string) int {
@@ -56,7 +36,7 @@ func (dist OptAli) CalculateDistance(fromString string, toString string) int {
 			} else {
 				cost = 1
 			}
-			d[i][j] = dist.minimum3(d[i-1][j]+1, // deletion
+			d[i][j] = minimum3(d[i-1][j]+1, // deletion
 				d[i][j-1]+1,      // insertion
 				d[i-1][j-1]+cost, // substitution
 			)
@@ -64,7 +44,7 @@ func (dist OptAli) CalculateDistance(fromString string, toString string) int {
 				j > 1 &&
 				[]byte(fromString)[i] == []byte(toString)[j-1] &&
 				[]byte(fromString)[i-1] == []byte(toString)[j] {
-				d[i][j] = dist.minimum2(
+				d[i][j] = minimum2(
 					d[i][j],
 					d[i-2][j-2]+cost, // transposition
 				)
