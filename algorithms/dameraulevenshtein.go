@@ -7,7 +7,11 @@ import (
 type DamLev struct {
 }
 
-func (dist DamLev) CalculateDistance(fromString string, toString string, alphabetSize int) int {
+func (dist DamLev) CalculateDistance(fromString string, toString string) int {
+	// infers size of alphabet by maximum of from string
+	return dist.CalculateDistanceWithAlphabet(fromString, toString, len(fromString))
+}
+func (dist DamLev) CalculateDistanceWithAlphabet(fromString string, toString string, alphabetSize int) int {
 	fullLength := len(fromString) + len(toString)
 
 	da := make([]byte, alphabetSize)
