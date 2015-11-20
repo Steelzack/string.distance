@@ -7,6 +7,14 @@ import (
 	"strconv"
 )
 
+type Direction int
+
+const (
+	Diag Direction = 0
+	Up Direction = 1
+	Left Direction = 2
+	)
+
 func minimum4(element1 int, element2 int, element3 int, element4 int) int {
 	return int(math.Min(float64(element4), float64(minimum3(element1, element2, element3))))
 }
@@ -19,8 +27,16 @@ func minimum2(element1 int, element2 int) int {
 	return int(math.Min(float64(element1), float64(element2)))
 }
 
-func maximum3(element1 int, element2 int, element3 int) int {
-	return int(math.Max(float64(element3), float64(maximum2(element1, element2))))
+func maximumwithdirection3(diagonal int, up int, left int) (value int, direction Direction) {
+	value = int(math.Max(float64(left), float64(maximum2(diagonal, up))))
+	if(value == diagonal){
+		direction = Diag
+	} else if (value == up) {
+		direction = Up
+	} else if (value == left) {
+		direction = Left
+	}
+	return 
 }
 
 func maximum2(element1 int, element2 int) int {
