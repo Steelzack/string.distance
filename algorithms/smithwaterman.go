@@ -1,17 +1,19 @@
 package algorithms
 
-type NeeWun struct {
+import ()
+
+type SmiWat struct {
 	gap            int
 	missmatchscore int
 	exactscore     int
 	StringDistance
 }
 
-func NewNeeWun(gap int, missmatchscore int, exactscore int) *NeeWun {
-	return &NeeWun{gap, missmatchscore, exactscore, nil}
+func NewSmiWat(gap int, missmatchscore int, exactscore int) *SmiWat {
+	return &SmiWat{gap, missmatchscore, exactscore, nil}
 }
 
-func (dist NeeWun) CalculateDistance(fromString string, toString string) int {
+func (dist SmiWat) CalculateDistance(fromString string, toString string) int {
 	lenFromString := len(fromString)
 	lenToString := len(toString)
 
@@ -24,12 +26,12 @@ func (dist NeeWun) CalculateDistance(fromString string, toString string) int {
 
 	matrix[0][0] = 0
 	for j := 1; j < lenToString+1; j++ {
-		matrix[0][j] = matrix[0][j-1] + dist.gap
+		matrix[0][j] = 0
 		matrixroute[0][j] = int(Left)
 	}
 
 	for i := 1; i < lenFromString+1; i++ {
-		matrix[i][0] = matrix[i-1][0] + dist.gap
+		matrix[i][0] = 0
 		matrixroute[i][0] = int(Up)
 
 		for j := 1; j < lenToString+1; j++ {
@@ -44,7 +46,7 @@ func (dist NeeWun) CalculateDistance(fromString string, toString string) int {
 			gup := matrix[i-1][j] + dist.gap
 			gleft := matrix[i][j-1] + dist.gap
 
-			result, route := maximumwithdirection3(gdiag, gup, gleft)
+			result, route := maximumwithdirection4(gdiag, gup, gleft, 0)
 			matrix[i][j] = result
 			matrixroute[i][j] = int(route)
 		}
@@ -58,25 +60,26 @@ func (dist NeeWun) CalculateDistance(fromString string, toString string) int {
 	return distance
 }
 
-func (dist NeeWun) traceback(matrixroute [][]int) (int, int) {
-	i := len(matrixroute) - 1
-	j := len(matrixroute[i]) - 1
-	walk := 0
-	distance := 0
-	for !(i == 0 && j == 0) {
-		currentarrow := matrixroute[i][j]
-		switch currentarrow {
-		case int(Diag):
-			i--
-			j--
-		case int(Left):
-			j--
-			distance++
-		case int(Up):
-			i--
-			distance++
-		}
-		walk++
-	}
-	return distance, walk
+func (dist SmiWat) traceback(matrixroute [][]int) (int, int) {
+//	i := len(matrixroute) - 1
+//	j := len(matrixroute[i]) - 1
+//	walk := 0
+//	distance := 0
+//	for !(i == 0 && j == 0) {
+//		currentarrow := matrixroute[i][j]
+//		switch currentarrow {
+//		case int(Diag):
+//			i--
+//			j--
+//		case int(Left):
+//			j--
+//			distance++
+//		case int(Up):
+//			i--
+//			distance++
+//		}
+//		walk++
+//	}
+//	return distance, walk
+	return 0, 0
 }
