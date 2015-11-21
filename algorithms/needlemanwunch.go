@@ -54,7 +54,7 @@ func (dist NeeWun) CalculateDistance(fromString string, toString string) int {
 	logArrayLine(matrix)
 	logArrayLine(matrixroute)
 
-	bufferFrom, bufferTo, walk := dist.traceback(matrixroute, fromString, toString)
+	bufferFrom, bufferTo, walk := dist.traceback(matrixroute, fromString, toString, lenFromString, lenToString)
 	modifiedFrom, modifiedTo, _ := dist.revertedStringsAndWalk(bufferFrom, bufferTo, walk)
 
 	return compareSameSizeString(modifiedFrom, modifiedTo)

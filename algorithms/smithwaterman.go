@@ -56,8 +56,45 @@ func (dist SmiWat) CalculateDistance(fromString string, toString string) int {
 	logArrayLine(matrix)
 	logArrayLine(matrixroute)
 
-	bufferFrom, bufferTo, walk := dist.traceback(matrixroute, fromString, toString)
-	modifiedFrom, modifiedTo, _ := dist.revertedStringsAndWalk(bufferFrom, bufferTo, walk)
+	positions := dist.getAllMatrixPositions(matrix)
 
-	return compareSameSizeString(modifiedFrom, modifiedTo)
+	var modifiedFrom string
+	var modifiedTo string
+	var distance int
+
+	var minDistance int
+
+	for i := 0; i < len(positions); i++ {
+		bufferFrom, bufferTo, walk := dist.traceback(matrixroute, fromString, toString, positions[i][0], positions[i][1])
+		modifiedFrom, modifiedTo, _ = dist.revertedStringsAndWalk(bufferFrom, bufferTo, walk)
+		distance = compareSameSizeString(modifiedFrom, modifiedTo)
+		if minDistance == 0 || distance < minDistance {
+			minDistance = distance
+		}
+	}
+
+	return minDistance
+}
+
+func (dist SmiWat) getAllMatrixPositions(matrix [][]int) [][]int {
+	a := make([][]int, 0)
+	max := 0
+	for i := 0; i < len(matrix); i++ {
+		for j := 0; j < len(matrix[0]); j++ {
+			foundValue := matrix[i][j]
+			if foundValue >= max {
+				a = appendPosition(a, i, j, foundValue)
+				max = foundValue
+			}
+		}
+	}
+
+	cleanArray := make([][]int, 0)
+	for i := 0; i < len(a); i++ {
+		if a[i][2] == max {
+			cleanArray = appendPosition(cleanArray, a[i][0], a[i][1], a[i][2])
+		}
+	}
+
+	return cleanArray
 }

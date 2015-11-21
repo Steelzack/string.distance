@@ -83,10 +83,21 @@ func revertString(stringTest string) string {
 func compareSameSizeString(stringA string, stringB string) int {
 	arrayA, arrayB := []rune(stringA), []rune(stringB)
 	diffCount := 0
-	for i := 0; i < len(arrayA); i++ {
+	for i := 0; i < len(arrayA) && i < len(arrayB); i++ {
 		if arrayA[i] != arrayB[i] {
 			diffCount++
 		}
 	}
+	diffCount += int(math.Abs(float64(len(arrayA) - len(arrayB))))
+	log.Println("Found distance: ", diffCount)
 	return diffCount
+}
+
+func appendPosition(arrayPos [][]int, x int, y int, value int) [][]int {
+	a := make([][]int, 1)
+	a[0] = make([]int, 3)
+	a[0][0] = x
+	a[0][1] = y
+	a[0][2] = value
+	return append(arrayPos, a[0])
 }

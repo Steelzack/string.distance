@@ -13,13 +13,20 @@ type StringDistanceImpl struct {
 	StringDistance
 }
 
-func (dist StringDistanceImpl) traceback(matrixroute [][]int, fromString string, toString string) (bytes.Buffer, bytes.Buffer, int) {
-
-	i := len(matrixroute) - 1
-	j := len(matrixroute[i]) - 1
+func (dist StringDistanceImpl) traceback(matrixroute [][]int, fromString string, toString string, startIndexFrom int, startIndexTo int) (bytes.Buffer, bytes.Buffer, int) {
+	i := startIndexFrom
+	j := startIndexTo
 	var bufferFrom bytes.Buffer
 	var bufferTo bytes.Buffer
 	walk := 0
+
+	for i := len(fromString) - 1; i >= startIndexFrom; i-- {
+		bufferFrom.WriteRune([]rune(fromString)[i])
+	}
+	for j := len(toString) - 1; j >= startIndexTo; j-- {
+		bufferTo.WriteRune([]rune(toString)[j])
+	}
+
 	for !(i == 0 && j == 0) {
 		currentarrow := matrixroute[i][j]
 		switch currentarrow {
