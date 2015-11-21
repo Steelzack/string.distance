@@ -12,6 +12,7 @@
 * http://cs.stanford.edu/people/eroberts/courses/soco/projects/computers-and-the-hgp/smith_waterman.html
 * http://www.montefiore.ulg.ac.be/~kvansteen/GBIO0009-1/ac20092010/Class4/Smith-Waterman.pdf
 * http://www.slideshare.net/avrilcoghlan/the-smith-waterman-algorithm
+* http://www.slideshare.net/mcastrosouza/algoritmo-de-smithwaterman-47681112
 
 5) Interfaces for string distances algorithm
 

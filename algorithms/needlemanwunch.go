@@ -4,11 +4,11 @@ type NeeWun struct {
 	gap            int
 	missmatchscore int
 	exactscore     int
-	StringDistance
+	StringDistanceImpl
 }
 
 func NewNeeWun(gap int, missmatchscore int, exactscore int) *NeeWun {
-	return &NeeWun{gap, missmatchscore, exactscore, nil}
+	return &NeeWun{gap, missmatchscore, exactscore, *new(StringDistanceImpl)}
 }
 
 func (dist NeeWun) CalculateDistance(fromString string, toString string) int {
@@ -34,7 +34,7 @@ func (dist NeeWun) CalculateDistance(fromString string, toString string) int {
 
 		for j := 1; j < lenToString+1; j++ {
 			var score int
-			if []byte(toString)[j-1] == []byte(fromString)[i-1] {
+			if []rune(toString)[j-1] == []rune(fromString)[i-1] {
 				score = dist.exactscore
 			} else {
 				score = -1 * dist.missmatchscore
@@ -54,29 +54,8 @@ func (dist NeeWun) CalculateDistance(fromString string, toString string) int {
 	logArrayLine(matrix)
 	logArrayLine(matrixroute)
 
-	distance, _ := dist.traceback(matrixroute)
-	return distance
-}
+	bufferFrom, bufferTo, walk := dist.traceback(matrixroute, fromString, toString, lenFromString, lenToString)
+	modifiedFrom, modifiedTo, _ := dist.revertedStringsAndWalk(bufferFrom, bufferTo, walk)
 
-func (dist NeeWun) traceback(matrixroute [][]int) (int, int) {
-	i := len(matrixroute) - 1
-	j := len(matrixroute[i]) - 1
-	walk := 0
-	distance := 0
-	for !(i == 0 && j == 0) {
-		currentarrow := matrixroute[i][j]
-		switch currentarrow {
-		case int(Diag):
-			i--
-			j--
-		case int(Left):
-			j--
-			distance++
-		case int(Up):
-			i--
-			distance++
-		}
-		walk++
-	}
-	return distance, walk
+	return compareSameSizeString(modifiedFrom, modifiedTo)
 }

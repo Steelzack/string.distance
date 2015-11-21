@@ -31,7 +31,7 @@ func (dist OptAli) CalculateDistance(fromString string, toString string) int {
 	for i = 1; i < lenStr1; i++ {
 		for j = 1; j < lenStr2; j++ {
 
-			if []byte(fromString)[i] == []byte(toString)[j] {
+			if []rune(fromString)[i] == []rune(toString)[j] {
 				cost = 0
 			} else {
 				cost = 1
@@ -42,8 +42,8 @@ func (dist OptAli) CalculateDistance(fromString string, toString string) int {
 			)
 			if i > 1 &&
 				j > 1 &&
-				[]byte(fromString)[i] == []byte(toString)[j-1] &&
-				[]byte(fromString)[i-1] == []byte(toString)[j] {
+				[]rune(fromString)[i] == []rune(toString)[j-1] &&
+				[]rune(fromString)[i-1] == []rune(toString)[j] {
 				d[i][j] = minimum2(
 					d[i][j],
 					d[i-2][j-2]+cost, // transposition

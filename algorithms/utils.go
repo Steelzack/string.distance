@@ -70,3 +70,34 @@ func logArrayLine(array [][]int) {
 		log.Println(buffer.String())
 	}
 }
+
+func revertString(stringTest string) string {
+	array := []rune(stringTest)
+	arrayLength := len(array)
+	for iforward, ibackward := 0, arrayLength-1; iforward < arrayLength/2 && ibackward > 0; iforward, ibackward = iforward+1, ibackward-1 {
+		array[iforward], array[ibackward] = array[ibackward], array[iforward]
+	}
+	return string(array)
+}
+
+func compareSameSizeString(stringA string, stringB string) int {
+	arrayA, arrayB := []rune(stringA), []rune(stringB)
+	diffCount := 0
+	for i := 0; i < len(arrayA) && i < len(arrayB); i++ {
+		if arrayA[i] != arrayB[i] {
+			diffCount++
+		}
+	}
+	diffCount += int(math.Abs(float64(len(arrayA) - len(arrayB))))
+	log.Println("Found distance: ", diffCount)
+	return diffCount
+}
+
+func appendPosition(arrayPos [][]int, x int, y int, value int) [][]int {
+	a := make([][]int, 1)
+	a[0] = make([]int, 3)
+	a[0][0] = x
+	a[0][1] = y
+	a[0][2] = value
+	return append(arrayPos, a[0])
+}

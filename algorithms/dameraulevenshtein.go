@@ -38,10 +38,10 @@ func (dist DamLev) CalculateDistanceWithAlphabet(fromString string, toString str
 		chari := 1
 
 		for j := 1; j <= len(toString); j++ {
-			i1 := bytes.IndexByte(da, []byte(toString)[j-1])
+			i1 := bytes.IndexRune(da, []rune(toString)[j-1])
 			j1 := chari
 			var cost int
-			if []byte(fromString)[i-1] == []byte(toString)[j-1] {
+			if []rune(fromString)[i-1] == []rune(toString)[j-1] {
 				cost = 0
 				chari = j
 			} else {
