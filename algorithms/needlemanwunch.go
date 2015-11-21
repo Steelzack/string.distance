@@ -1,5 +1,10 @@
 package algorithms
 
+import (
+	"bytes"
+	"log"
+)
+
 type NeeWun struct {
 	gap            int
 	missmatchscore int
@@ -54,29 +59,39 @@ func (dist NeeWun) CalculateDistance(fromString string, toString string) int {
 	logArrayLine(matrix)
 	logArrayLine(matrixroute)
 
-	distance, _ := dist.traceback(matrixroute)
-	return distance
-}
+	modifiedFrom, modifiedTo, walk := dist.traceback(matrixroute, fromString, toString)
 
-func (dist NeeWun) traceback(matrixroute [][]int) (int, int) {
+	log.Println("Number of steps: ", walk)
+	log.Println(modifiedFrom)
+	log.Println(modifiedTo)
+
+	return compareSameSizeString(modifiedFrom, modifiedTo)
+}
+func (dist NeeWun) traceback(matrixroute [][]int, fromString string, toString string) (string, string, int) {
+
 	i := len(matrixroute) - 1
 	j := len(matrixroute[i]) - 1
+	var bufferFrom bytes.Buffer
+	var bufferTo bytes.Buffer
 	walk := 0
-	distance := 0
 	for !(i == 0 && j == 0) {
 		currentarrow := matrixroute[i][j]
 		switch currentarrow {
 		case int(Diag):
+			bufferFrom.WriteByte([]byte(fromString)[i-1])
+			bufferTo.WriteByte([]byte(toString)[j-1])
 			i--
 			j--
 		case int(Left):
+			bufferFrom.WriteByte('-')
+			bufferTo.WriteByte([]byte(toString)[j-1])
 			j--
-			distance++
 		case int(Up):
+			bufferFrom.WriteByte([]byte(fromString)[i-1])
+			bufferTo.WriteByte('-')
 			i--
-			distance++
 		}
 		walk++
 	}
-	return distance, walk
+	return revertString(bufferFrom.String()), revertString(bufferTo.String()), walk
 }

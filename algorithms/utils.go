@@ -70,3 +70,23 @@ func logArrayLine(array [][]int) {
 		log.Println(buffer.String())
 	}
 }
+
+func revertString(stringTest string) string {
+	array := []rune(stringTest)
+	arrayLength := len(array)
+	for iforward, ibackward := 0, arrayLength-1; iforward < arrayLength/2 && ibackward > 0; iforward, ibackward = iforward+1, ibackward-1 {
+		array[iforward], array[ibackward] = array[ibackward], array[iforward]
+	}
+	return string(array)
+}
+
+func compareSameSizeString(stringA string, stringB string) int {
+	arrayA, arrayB := []rune(stringA), []rune(stringB)
+	diffCount := 0
+	for i := 0; i < len(arrayA); i++ {
+		if arrayA[i] != arrayB[i] {
+			diffCount++
+		}
+	}
+	return diffCount
+}
