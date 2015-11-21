@@ -54,11 +54,11 @@ func (dist NeeWun) CalculateDistance(fromString string, toString string) int {
 	logArrayLine(matrix)
 	logArrayLine(matrixroute)
 
-	distance, _ := traceback(matrixroute)
+	distance, _ := dist.traceback(matrixroute)
 	return distance
 }
 
-func traceback(matrixroute [][]int) (int, int) {
+func (dist NeeWun) traceback(matrixroute [][]int) (int, int) {
 	i := len(matrixroute) - 1
 	j := len(matrixroute[i]) - 1
 	walk := 0
