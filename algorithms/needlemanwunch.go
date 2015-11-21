@@ -39,7 +39,7 @@ func (dist NeeWun) CalculateDistance(fromString string, toString string) int {
 
 		for j := 1; j < lenToString+1; j++ {
 			var score int
-			if []byte(toString)[j-1] == []byte(fromString)[i-1] {
+			if []rune(toString)[j-1] == []rune(fromString)[i-1] {
 				score = dist.exactscore
 			} else {
 				score = -1 * dist.missmatchscore
@@ -78,16 +78,16 @@ func (dist NeeWun) traceback(matrixroute [][]int, fromString string, toString st
 		currentarrow := matrixroute[i][j]
 		switch currentarrow {
 		case int(Diag):
-			bufferFrom.WriteByte([]byte(fromString)[i-1])
-			bufferTo.WriteByte([]byte(toString)[j-1])
+			bufferFrom.WriteRune([]rune(fromString)[i-1])
+			bufferTo.WriteRune([]rune(toString)[j-1])
 			i--
 			j--
 		case int(Left):
 			bufferFrom.WriteByte('-')
-			bufferTo.WriteByte([]byte(toString)[j-1])
+			bufferTo.WriteRune([]rune(toString)[j-1])
 			j--
 		case int(Up):
-			bufferFrom.WriteByte([]byte(fromString)[i-1])
+			bufferFrom.WriteRune([]rune(fromString)[i-1])
 			bufferTo.WriteByte('-')
 			i--
 		}

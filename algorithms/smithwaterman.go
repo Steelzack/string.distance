@@ -36,7 +36,7 @@ func (dist SmiWat) CalculateDistance(fromString string, toString string) int {
 
 		for j := 1; j < lenToString+1; j++ {
 			var score int
-			if []byte(toString)[j-1] == []byte(fromString)[i-1] {
+			if []rune(toString)[j-1] == []rune(fromString)[i-1] {
 				score = dist.exactscore
 			} else {
 				score = -1 * dist.missmatchscore
