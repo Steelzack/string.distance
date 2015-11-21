@@ -6,11 +6,11 @@ type SmiWat struct {
 	gap            int
 	missmatchscore int
 	exactscore     int
-	StringDistance
+	StringDistanceImpl
 }
 
 func NewSmiWat(gap int, missmatchscore int, exactscore int) *SmiWat {
-	return &SmiWat{gap, missmatchscore, exactscore, nil}
+	return &SmiWat{gap, missmatchscore, exactscore, *new(StringDistanceImpl)}
 }
 
 func (dist SmiWat) CalculateDistance(fromString string, toString string) int {
@@ -56,30 +56,8 @@ func (dist SmiWat) CalculateDistance(fromString string, toString string) int {
 	logArrayLine(matrix)
 	logArrayLine(matrixroute)
 
-	distance, _ := dist.traceback(matrixroute)
-	return distance
-}
+	bufferFrom, bufferTo, walk := dist.traceback(matrixroute, fromString, toString)
+	modifiedFrom, modifiedTo, _ := dist.revertedStringsAndWalk(bufferFrom, bufferTo, walk)
 
-func (dist SmiWat) traceback(matrixroute [][]int) (int, int) {
-//	i := len(matrixroute) - 1
-//	j := len(matrixroute[i]) - 1
-//	walk := 0
-//	distance := 0
-//	for !(i == 0 && j == 0) {
-//		currentarrow := matrixroute[i][j]
-//		switch currentarrow {
-//		case int(Diag):
-//			i--
-//			j--
-//		case int(Left):
-//			j--
-//			distance++
-//		case int(Up):
-//			i--
-//			distance++
-//		}
-//		walk++
-//	}
-//	return distance, walk
-	return 0, 0
+	return compareSameSizeString(modifiedFrom, modifiedTo)
 }

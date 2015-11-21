@@ -1,19 +1,14 @@
 package algorithms
 
-import (
-	"bytes"
-	"log"
-)
-
 type NeeWun struct {
 	gap            int
 	missmatchscore int
 	exactscore     int
-	StringDistance
+	StringDistanceImpl
 }
 
 func NewNeeWun(gap int, missmatchscore int, exactscore int) *NeeWun {
-	return &NeeWun{gap, missmatchscore, exactscore, nil}
+	return &NeeWun{gap, missmatchscore, exactscore, *new(StringDistanceImpl)}
 }
 
 func (dist NeeWun) CalculateDistance(fromString string, toString string) int {
@@ -59,39 +54,8 @@ func (dist NeeWun) CalculateDistance(fromString string, toString string) int {
 	logArrayLine(matrix)
 	logArrayLine(matrixroute)
 
-	modifiedFrom, modifiedTo, walk := dist.traceback(matrixroute, fromString, toString)
-
-	log.Println("Number of steps: ", walk)
-	log.Println(modifiedFrom)
-	log.Println(modifiedTo)
+	bufferFrom, bufferTo, walk := dist.traceback(matrixroute, fromString, toString)
+	modifiedFrom, modifiedTo, _ := dist.revertedStringsAndWalk(bufferFrom, bufferTo, walk)
 
 	return compareSameSizeString(modifiedFrom, modifiedTo)
-}
-func (dist NeeWun) traceback(matrixroute [][]int, fromString string, toString string) (string, string, int) {
-
-	i := len(matrixroute) - 1
-	j := len(matrixroute[i]) - 1
-	var bufferFrom bytes.Buffer
-	var bufferTo bytes.Buffer
-	walk := 0
-	for !(i == 0 && j == 0) {
-		currentarrow := matrixroute[i][j]
-		switch currentarrow {
-		case int(Diag):
-			bufferFrom.WriteRune([]rune(fromString)[i-1])
-			bufferTo.WriteRune([]rune(toString)[j-1])
-			i--
-			j--
-		case int(Left):
-			bufferFrom.WriteByte('-')
-			bufferTo.WriteRune([]rune(toString)[j-1])
-			j--
-		case int(Up):
-			bufferFrom.WriteRune([]rune(fromString)[i-1])
-			bufferTo.WriteByte('-')
-			i--
-		}
-		walk++
-	}
-	return revertString(bufferFrom.String()), revertString(bufferTo.String()), walk
 }
