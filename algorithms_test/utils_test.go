@@ -1,4 +1,4 @@
+// +build !steelzackstringdistance
 package algorithms
 
-import (
-)
+import ()
