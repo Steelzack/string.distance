@@ -7,7 +7,7 @@ import (
 	"testing"
 )
 
-func TestCalculateDistanceWithAlphabet(t *testing.T) {
+func TestCalculateDistanceDamLevWithAlphabet(t *testing.T) {
 	damleu1 := new(algorithms.DamLev)
 	result1 := damleu1.CalculateDistanceWithAlphabet("SimpleTest", "SimplTest", 20)
 	assert.Equal(t, 1, result1, "Calculation for DamLeu is not correct!")
