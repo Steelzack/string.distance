@@ -13,15 +13,6 @@ Library to support implementations for the calculation of distances between stri
 >
 > Smith - Waterman
 
-```flow
-st=>start: Start
-e=>end
-op=>operation: Calculate distance
-
-st->op->e
-
-
-```
 
 #### <i class="icon-file"></i> **Bibliography:**
 
