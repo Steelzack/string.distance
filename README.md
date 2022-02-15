@@ -6,6 +6,8 @@
 [![Generic badge](https://img.shields.io/static/v1.svg?label=GitHub&message=string.distance%20📜&color=informational)](https://github.com/jesperancinha/string.distance)
 [![GitHub License](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](https://www.apache.org/licenses/LICENSE-2.0)
 
+[![string.distance](https://github.com/jesperancinha/string.distance/actions/workflows/string.distance.yml/badge.svg)](https://github.com/jesperancinha/string.distance/actions/workflows/string.distance.yml)
+
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/bd29987b5ba248e9a178b0a50c1c1c20)](https://www.codacy.com/gh/jesperancinha/string.distance/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jesperancinha/string.distance&amp;utm_campaign=Badge_Grade)
 
 [![Coverage Status](https://coveralls.io/repos/github/jesperancinha/string.distance/badge.svg?branch=master)](https://coveralls.io/github/jesperancinha/string.distance?branch=master)
