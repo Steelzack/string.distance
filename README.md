@@ -10,7 +10,9 @@
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/bd29987b5ba248e9a178b0a50c1c1c20)](https://www.codacy.com/gh/jesperancinha/string.distance/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jesperancinha/string.distance&amp;utm_campaign=Badge_Grade)
 
+[![Codacy Badge](https://app.codacy.com/project/badge/Coverage/bd29987b5ba248e9a178b0a50c1c1c20)](https://www.codacy.com/gh/jesperancinha/string.distance/dashboard?utm_source=github.com&utm_medium=referral&utm_content=jesperancinha/string.distance&utm_campaign=Badge_Coverage)
 [![Coverage Status](https://coveralls.io/repos/github/jesperancinha/string.distance/badge.svg?branch=master)](https://coveralls.io/github/jesperancinha/string.distance?branch=master)
+[![codecov](https://codecov.io/gh/jesperancinha/string.distance/branch/master/graph/badge.svg?token=fWbuTCiEdL)](https://codecov.io/gh/jesperancinha/string.distance)
 
 [![GitHub language count](https://img.shields.io/github/languages/count/jesperancinha/string.distance.svg)](#)
 [![GitHub top language](https://img.shields.io/github/languages/top/jesperancinha/string.distance.svg)](#)
