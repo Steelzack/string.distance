@@ -22,3 +22,10 @@ _testmain.go
 *.exe
 *.test
 *.prof
+
+# Coverage
+coverage.out
+
+# Intellij
+.idea
+*.iml
