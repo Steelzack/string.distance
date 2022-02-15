@@ -1,8 +1,10 @@
-// +build !steelzackstringdistance
+//go:build !jesperancinhastringdistance
+// +build !jesperancinhastringdistance
+
 package algorithms
 
 import (
-	"github.com/steelzack/string.distance/algorithms"
+	"github.com/jesperancinha/string.distance/algorithms"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )

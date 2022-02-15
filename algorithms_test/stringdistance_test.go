@@ -1,3 +1,0 @@
-// +build !steelzackstringdistance
-package algorithms
-

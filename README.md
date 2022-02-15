@@ -1,6 +1,7 @@
 # string.distance
 
 Library to support implementations for the calculation of distances between strings according to several algorithms
+
 #### <i class="icon-refresh"></i> **Algorithms implemented:**
 
 >  Optimal Alignment
@@ -10,9 +11,16 @@ Library to support implementations for the calculation of distances between stri
 > Needleman - Wunsch
 >
 > Smith - Waterman
+>
 #### <i class="icon-file"></i> **Bibliography:**
 
 >* https://medium.com/@matryer/5-simple-tips-and-tricks-for-writing-unit-tests-in-golang-619653f90742#.s2q16iurk
+
+## Buy me a coffee
+
+I hope you enjoyed this repository. If you did, you can optionally please buy me a coffee, which supports me in constantly improve and make new free content regularly for everyone. Thank you so much!
+
+[![Buy me a coffee](https://img.buymeacoffee.com/button-api/?text=Buy%20me%20a%20coffee&emoji=&slug=jesperancinha&button_colour=046c46&font_colour=ffffff&font_family=Cookie&outline_colour=ffffff&coffee_colour=FFDD00 "title")](https://www.buymeacoffee.com/jesperancinha)
 
 ## About me 👨🏽‍💻🚀🏳️‍🌈
 
